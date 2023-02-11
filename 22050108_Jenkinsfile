@@ -1,12 +1,10 @@
 pipeline {
 
-  agent {
-
-        docker { image '22050108_webimage:1.0'
-         args '--name S2_22050108_Server -u root:root -d -p 42000:80 '
-               }
+    agent {
+        node {
+            label 'master'
+        }
     }
-   
   
     stages {
         
@@ -17,7 +15,9 @@ pipeline {
         }
         stage('Stage 2_22050108') {
             steps {
-                sh  "apache2ctl start"
+                sh  "cd /home/dockeradm/cwf"
+                sh   "kubectl create -f /test"
+                
                 echo "S2_22050108 : Web Server Creation Completed"
             }
         }
