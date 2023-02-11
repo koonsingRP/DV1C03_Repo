@@ -1,1 +1,59 @@
+pipeline {
 
+  agent {
+
+        docker { image '22050108_webimage:1.0'
+         args '--name S2_22050108_Server -u root:root -d -p 42000:80 '
+               }
+    }
+   
+  
+    stages {
+        
+     stage('Stage 1_22050108') {
+            steps {
+                echo "S1_22050108 : Environment Preparation Completed"
+            }
+        }
+        stage('Stage 2_22050108') {
+            steps {
+                sh  "apache2ctl start"
+                echo "S2_22050108 : Web Server Creation Completed"
+            }
+        }
+        stage('Stage Parallel') {
+                parallel {
+                stage('Stage 3_22050108') {
+                    steps {
+
+                        echo "S3_22050108 : API Test Completed"
+                    }
+                }
+                stage('Stage 4_22050108') {
+                    steps {
+
+                        echo "S4_22050108 : DAST Security Test Completed"
+                    }
+                }
+               } 
+        
+        }
+        stage('Stage 5_22050108') {
+            input {
+                message "Do you want to release the work?"
+                ok "Yes"
+            }
+              steps {
+                 echo "Yes Selected"
+                }
+        }
+        stage('Stage 6_22050108') {
+            
+            steps {
+                echo "Work Released - 22050108"
+            }
+        }
+       
+
+    }   
+}
