@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Stage 2_22050108') {
             steps {
-                sh  "cd /home/dockeradm/cwf"
+                sh  "kubectl create -f /home/dockeradm/cwf/test"
                 sh   "pwd"
                 
                 echo "S2_22050108 : Web Server Creation Completed"
