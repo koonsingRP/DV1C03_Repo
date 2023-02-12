@@ -15,15 +15,21 @@ pipeline {
         }
         
         
-         stage('Deploying App to Kubernetes') {
-      steps {
+         
+        
+        stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhublogin'
+           }
+      steps{
         script {
-          kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push("latest")
+          }
         }
       }
     }
-        
-        
+
         
         
         
