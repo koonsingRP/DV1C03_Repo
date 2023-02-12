@@ -27,7 +27,7 @@ pipeline {
                 script {
                   dockerImage = docker.build dockerimagename
                  }
-                 sh "docker run -it -d --name S2_22050108_Server koonsingrp/22050108_webimage -p 42000:80"
+                 sh "docker run -it -d -p 42000:80 --name S2_22050108_Server koonsingrp/22050108_webimage "
                  echo "S2_22050108 : Web Server Creation Completed"
             }
         }
