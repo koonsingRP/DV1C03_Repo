@@ -14,7 +14,7 @@ pipeline {
              environment {
                          dockerimagename = "koonsingrp/22050108_webimage"
                          dockerImage = ""
-                         registryCredential = 'dockerhublogin'
+                       
               }
 
                 echo "S1_22050108 : Environment Preparation Completed"
@@ -66,6 +66,10 @@ pipeline {
         stage('Stage 6_22050108') {
             
             steps {
+            environment {
+                          registryCredential = 'dockerhublogin'
+              }
+            
                   script {
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
                     dockerImage.push("latest")
