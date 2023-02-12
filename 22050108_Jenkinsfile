@@ -23,21 +23,6 @@ pipeline {
 
          
         
-        stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerhublogin'
-           }
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-          
-           dockerImage.push("latest")
-             
-          }
-        }
-      }
-    }
-        
         
         
         stage('Stage 2_22050108') {
@@ -75,11 +60,37 @@ pipeline {
                 }
         }
         stage('Stage 6_22050108') {
-            
+        
+             environment {
+               registryCredential = 'dockerhublogin'
+             }
+             
             steps {
-                echo "Work Released - 22050108"
+             script {
+               docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+               dockerImage.push("latest")
+             
+                }
+            }
+               echo "Work Released - 22050108"
             }
         }
+        
+        stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhublogin'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+          
+           dockerImage.push("latest")
+             
+          }
+        }
+      }
+    }
+        
        
 
     }   
