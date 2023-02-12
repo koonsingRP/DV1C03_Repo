@@ -8,26 +8,25 @@ pipeline {
             label 'master'
         }
     }
+    
+     environment {
+          dockerimagename = "koonsingrp/22050108_webimage"
+           dockerImage = ""
+           
+        }
   
     stages {
         
      stage('Stage 1_22050108') {
       
-      environment {
-          dockerimagename = "koonsingrp/22050108_webimage"
-           dockerImage = ""
-           
-        }
+     
             steps {
                 echo "S1_22050108 : Environment Preparation Completed"
             }
         }
 
  stage('Build image') {
-    environment {
-       
-           registryCredential = 'dockerhublogin'
-        }
+  
       steps{
         script {
             dockerImage = docker.build dockerimagename
