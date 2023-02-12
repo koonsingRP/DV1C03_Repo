@@ -19,14 +19,7 @@ pipeline {
                 echo "S1_22050108 : Environment Preparation Completed"
             }
         }
-        
-         stage('Build image') {
-      steps{
-        script {
-       dockerImage = docker.build dockerimagename
-        }
-      }
-    }
+
          
         
         stage('Pushing Image') {
