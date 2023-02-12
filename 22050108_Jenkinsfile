@@ -1,6 +1,12 @@
 pipeline {
 
-     agent {
+  environment {
+    dockerimagename = "koonsingrp/22050108_webimage"
+    dockerImage = ""
+  }
+
+
+    agent {
         node {
             label 'master'
         }
@@ -10,29 +16,43 @@ pipeline {
         
      stage('Stage 1_22050108') {
             steps {
-            
-             environment {
-                         dockerimagename = "koonsingrp/22050108_webimage"
-                         dockerImage = ""
-                       
-              }
-
                 echo "S1_22050108 : Environment Preparation Completed"
             }
         }
 
-   
-       
+ stage('Build image') {
+      steps{
+        script {
+            dockerImage = docker.build dockerimagename
+        }
+      }
+    }
+         
+        
+        stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhublogin'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+          
+           dockerImage.push("latest")
+             
+          }
+        }
+      }
+    }
+
+        
+        
         
         
         
         stage('Stage 2_22050108') {
             steps {
-               
-               script {
-                    dockerImage = docker.build dockerimagename
-                    
-                }
+                //sh  "kubectl create -f /home/dockeradm/cwf/test"
+                sh   "pwd"
                 
                 echo "S2_22050108 : Web Server Creation Completed"
             }
@@ -66,20 +86,10 @@ pipeline {
         stage('Stage 6_22050108') {
             
             steps {
-            environment {
-                          registryCredential = 'dockerhublogin'
-              }
-            
-                  script {
-                    docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-                    dockerImage.push("latest")
-                   }
-          
-                  echo "Work Released - 22050108"
-                  }
+                echo "Work Released - 22050108"
             }
         }
-    
+       
 
     }   
 }
