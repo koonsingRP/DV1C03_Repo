@@ -1,6 +1,10 @@
 pipeline {
 
 
+ environment {
+    dockerimagename = "koonsingrp/22050108_webimage"
+    dockerImage = ""
+  }
 
 
     agent {
@@ -8,38 +12,21 @@ pipeline {
             label 'master'
         }
     }
-    
-     environment {
-          dockerimagename = "koonsingrp/22050108_webimage"
-           dockerImage = ""
-           
-        }
   
     stages {
         
      stage('Stage 1_22050108') {
-      
-     
             steps {
                 echo "S1_22050108 : Environment Preparation Completed"
             }
         }
 
- stage('Build image') {
-  
-      steps{
-        script {
-            dockerImage = docker.build dockerimagename
-        }
-      }
-    }
          
         
         stage('Pushing Image') {
-          environment {
-         
-           registryCredential = 'dockerhublogin'
-        }
+      environment {
+               registryCredential = 'dockerhublogin'
+           }
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
@@ -50,9 +37,6 @@ pipeline {
         }
       }
     }
-
-        
-        
         
         
         
