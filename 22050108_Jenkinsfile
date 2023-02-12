@@ -28,7 +28,7 @@ pipeline {
                   dockerImage = docker.build dockerimagename
                   
                   
-                   def containerExists = sh(script: "docker ps S2_22050108_Server ", returnStdout: true) == 0
+                   def containerExists = sh(script: "docker container inspect S2_22050108_Server ", returnStdout: true) == 0
 
                   if(containerExists){
                          sh "docker stop S2_22050108_Server"
