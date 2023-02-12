@@ -27,6 +27,11 @@ pipeline {
                 script {
                   dockerImage = docker.build dockerimagename
                  }
+                 
+                 sh "docker stop S2_22050108_Server"
+                 echo "S2_22050108 : Stop S2_22050108_Server container"
+                 sh "docker rm S2_22050108_Server"
+                 echo "S2_22050108 : Remove S2_22050108_Server container"
                  sh "docker run -it -d -p 42000:80 --name S2_22050108_Server koonsingrp/22050108_webimage "
                  echo "S2_22050108 : Web Server Creation Completed"
             }
