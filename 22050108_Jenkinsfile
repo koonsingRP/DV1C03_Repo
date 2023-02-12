@@ -24,7 +24,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            sh 'docker push 22050108_webimage:1.0 '
+            sh 'docker push koonsingrp/22050108_webimage:1.0 '
           }
         }
       }
