@@ -1,5 +1,11 @@
 pipeline {
 
+  environment {
+    dockerimagename = "koonsingrp/22050108_webimage"
+    dockerImage = ""
+  }
+
+
     agent {
         node {
             label 'master'
@@ -14,7 +20,13 @@ pipeline {
             }
         }
         
-        
+         stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker build dockerimagename .
+        }
+      }
+    }
          
         
         stage('Pushing Image') {
@@ -24,7 +36,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-           dockerImage = 'koonsingrp/22050108_webimage:1.0'
+          
            dockerImage.push("latest")
              
           }
