@@ -19,18 +19,15 @@ pipeline {
             steps {
                 echo "S1_22050108 : Environment Preparation Completed"
             }
-        }
-
-         
-        
+        } 
         
         
         stage('Stage 2_22050108') {
             steps {
-                //sh  "kubectl create -f /home/dockeradm/cwf/test"
-                sh   "pwd"
-                
-                echo "S2_22050108 : Web Server Creation Completed"
+                script {
+                  dockerImage = docker.build dockerimagename
+                 }
+                 echo "S2_22050108 : Web Server Creation Completed"
             }
         }
         stage('Stage Parallel') {
@@ -76,21 +73,7 @@ pipeline {
             }
         }
         
-        stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerhublogin'
-           }
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-          
-           dockerImage.push("latest")
-             
-          }
-        }
-      }
-    }
-        
+         
        
 
     }   
