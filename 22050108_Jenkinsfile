@@ -16,7 +16,7 @@ pipeline {
       environment {
           dockerimagename = "koonsingrp/22050108_webimage"
            dockerImage = ""
-           registryCredential = 'dockerhublogin'
+           
         }
             steps {
                 echo "S1_22050108 : Environment Preparation Completed"
@@ -24,6 +24,10 @@ pipeline {
         }
 
  stage('Build image') {
+    environment {
+       
+           registryCredential = 'dockerhublogin'
+        }
       steps{
         script {
             dockerImage = docker.build dockerimagename
