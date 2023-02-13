@@ -27,6 +27,15 @@ pipeline {
                 script {
                   dockerImage = docker.build dockerimagename
                   
+                   def result = sh(returnStdout: true, script: 'docker inspect --format="{{.State.Running}}" S2_22050108_Server').trim()
+          if (result == "true") {
+            echo 'Container my-container is running'
+          } else {
+            echo 'Container my-container is not running'
+          }
+          
+          
+          
                    }
  
                 
