@@ -27,22 +27,14 @@ pipeline {
                 script {
                   dockerImage = docker.build dockerimagename
                   
- 
-             /* def checkContainer = sh returnStdout: true, script: 'docker ps --format {{.Names}} | grep S2_22050108_Server'
- 		 
-                    if (checkContainer == "true") {
-                        echo "The container is running"
-                    } else {
-                        echo "The container is not running"
-                    }
-                  
-			*/	  
-          
-     			    
                    }
  
+ 		sh "docker stop S2_22050108_Server"
+		echo "S2_22050108 : Stop previous webserver container"
+		sh "docker rm S2_22050108_Server"
+		echo "S2_22050108 : Remove previous webserver container"
                 sh "docker run -it -d --name S2_22050108_Server -u root:root -d -p 42000:80  koonsingrp/22050108_webimage"
-                 //sh "docker-compose up -d  "
+                //sh "docker-compose up -d  "
                  echo "S2_22050108 : Web Server Creation Completed"
             }
         }
