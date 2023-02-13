@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                   dockerImage = docker.build dockerimagename
-                  dockerImage.run("-d --name S2_22050108_Server -u root:root -d -p 42000:80  koonsingrp/22050108_webimage");
+                  dockerImage.run("--name S2_22050108_Server -u root:root -p 42000:80  koonsingrp/22050108_webimage");
                    }
  
  		/*sh "docker stop S2_22050108_Server"
