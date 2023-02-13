@@ -27,7 +27,7 @@ pipeline {
                 script {
                   dockerImage = docker.build dockerimagename
                   
-                  def checkContainer = sh (script: 'docker ps --format "{{.Names}}" | grep S2_22050108_Server', returnStdout: true).trim()
+                  def checkContainer = sh (script: 'docker ps --format "{{.Names}}" | grep S2_22050108_Server', returnStdout: ).trim()
                  
                   if (checkContainer == 1) {
                     echo 'Container S2_22050108_Server is avaliable'
