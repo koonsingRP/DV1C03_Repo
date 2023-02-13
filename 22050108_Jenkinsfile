@@ -38,11 +38,11 @@ pipeline {
                   
 			*/	  
           
-          
+     			     docker-compose up -d 
                    }
  
                 
-                 sh "docker-compose up -d  "
+                 //sh "docker-compose up -d  "
                  echo "S2_22050108 : Web Server Creation Completed"
             }
         }
