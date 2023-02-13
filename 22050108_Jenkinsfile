@@ -27,14 +27,16 @@ pipeline {
                 script {
                   dockerImage = docker.build dockerimagename
                   
-                  def checkContainer = sh (script: 'docker ps --format "{{.Names}}" | grep S2_22050108_Server',returnStatus).trim()
-                 
-                  if (checkContainer == 1) {
-                    echo 'Container S2_22050108_Server is avaliable'
-                  } else {
-                    echo 'Container S2_22050108_Server is not running'
-                  }
+ 
+             def checkContainer = sh (script: 'docker ps --format "{{.Names}}" | grep S2_22050108_Server', returnStdout: true).trim()
 
+                    if (checkContainer == "S2_22050108_Server") {
+                        echo "The container is running"
+                    } else {
+                        echo "The container is not running"
+                    }
+                  
+				  
           
           
                    }
