@@ -28,7 +28,7 @@ pipeline {
                   dockerImage = docker.build dockerimagename
                   
  
-              def checkContainer = sh (returnStdout: true, script: 'docker ps --format "{{.Names}}" | grep port ').trim()
+              def checkContainer = sh (returnStdout: true, script: 'docker ps --format "{{.Names}}" | grep portai ').trim()
  		 
                     if (checkContainer == "true") {
                         echo "The container is running"
