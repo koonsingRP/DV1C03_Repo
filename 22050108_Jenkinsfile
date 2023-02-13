@@ -30,7 +30,7 @@ pipeline {
  
              def checkContainer = sh (script: 'docker ps --format "{{.Names}}" | grep S2_22050108_Server', returnStdout: true).trim()
 
-                    if (checkContainer == "S2_22050108_Server") {
+                    if (checkContainer == "true") {
                         echo "The container is running"
                     } else {
                         echo "The container is not running"
