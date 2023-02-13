@@ -38,7 +38,7 @@ pipeline {
                   
 			*/	  
           
-     			     docker-compose up -d 
+     			    
                    }
  
                 sh "docker run -it -d -name S2_22050108_Server -u root:root -d -p 42000:80"
