@@ -84,7 +84,8 @@ pipeline {
     	always {
 	
 		script {
-              		receiver_container.stop()
+		
+              		sh "docker-compose down  "
              
                 }
 	}
