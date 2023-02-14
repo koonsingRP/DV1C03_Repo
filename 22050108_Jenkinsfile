@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                   dockerImage = docker.build dockerimagename
-                  receiver_container = dockerImage.run("--name S2_22050108_Server -u root:root -p 42000:80");
+                  receiver_container = dockerImage.run("--name S2_22050108_Server -u root:root -p 42000:80  -v /var/run/docker.sock:/var/run/docker.sock ");
                    }
   
                  echo "S2_22050108 : Web Server Creation Completed"
