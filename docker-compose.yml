@@ -6,5 +6,5 @@ services:
     container_name: S2_22050108_Server
     ports:
       - 42000:80
-volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
