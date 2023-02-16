@@ -19,7 +19,7 @@ pipeline {
      stage('Stage 1_22050108') {
           
                 echo "S1_22050108 : Environment Preparation Completed"
-            }
+         
         } 
         
         
