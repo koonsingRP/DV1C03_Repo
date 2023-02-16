@@ -24,9 +24,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-service
+  name: apache-deployment 
   labels:
-    name: app-service 
+    name: apache-deployment  
     app: my-app       
 spec:
   type: NodePort
