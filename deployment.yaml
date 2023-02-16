@@ -27,7 +27,7 @@ metadata:
   name: apache-deployment 
   labels:
     name: apache-deployment  
-    app: my-app       
+    app: apache-deployment      
 spec:
   type: NodePort
   ports:
@@ -36,4 +36,4 @@ spec:
        nodePort: 42000
   selector: 
     name: apache-deployment 
-    app: my-app
+    app: apache-deployment
