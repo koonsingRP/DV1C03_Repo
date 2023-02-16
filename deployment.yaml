@@ -20,14 +20,14 @@ spec:
         ports:
         - containerPort: 80
 ---        
-         
+ 
 apiVersion: v1
 kind: Service
 metadata:
-  name: apache-deployment 
+  name: app-service
   labels:
-    name: apache-deployment  
-    app: apache-deployment      
+    name: app-service 
+    app: apache       
 spec:
   type: NodePort
   ports:
@@ -36,4 +36,8 @@ spec:
        nodePort: 42000
   selector: 
     name: apache-deployment 
-    app: apache-deployment
+    app: apache
+
+
+
+
