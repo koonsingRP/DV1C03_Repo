@@ -18,6 +18,9 @@ pipeline {
         
      stage('Stage 1_22050108') {
             steps {
+	    kubeconfig(credentialsId: 'k8', serverUrl: '') {
+    // some block
+}
                 echo "S1_22050108 : Environment Preparation Completed"
             }
         } 
@@ -30,7 +33,7 @@ pipeline {
                  // receiver_container = dockerImage.run("--name S2_22050108_Server -u root:root -p 42000:80  -v /var/run/docker.sock:/var/run/docker.sock ");
                    }
   	  	sh "docker-compose up -d  "
-		sh "kubectl get pod"
+		//sh "kubectl get pod"
 
                  echo "S2_22050108 : Web Server Creation Completed"
             }
