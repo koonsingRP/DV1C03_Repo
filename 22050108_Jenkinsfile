@@ -86,7 +86,7 @@ pipeline {
 			{
 			//sh "kubectl get pod"
 			//sh "kubectl create -f deploymentservice.yml"
-    			sh "kubectl create -f deployment.yaml"
+    			//sh "kubectl create -f deployment.yaml"
 			echo "inside"
 			}
         		  echo "Stage 7 - 22050108"
