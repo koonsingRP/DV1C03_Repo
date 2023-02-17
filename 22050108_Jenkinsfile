@@ -106,8 +106,7 @@ pipeline {
 		script {
 		
               		sh "docker-compose down  "
-			sh "kubectl delete -n default service apache"
-             		sh "kubectl delete -n default deployment apache-deployment"	
+			 	
                 }
 	}
     }
