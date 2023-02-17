@@ -1,5 +1,5 @@
 ---
-version: "3.9"
+version: "3.2"
 services:
   apache:
     image: koonsingrp/22050108_webimage
