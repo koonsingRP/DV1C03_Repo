@@ -17,6 +17,7 @@ spec:
       containers:
       - name: apache
         image: koonsingrp/22050108_webimage
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
