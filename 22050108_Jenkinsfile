@@ -97,7 +97,7 @@ pipeline {
 			 
 			 try
  			 {               
-   				    sh "kubectl delete -n default deployment apache-deployment"
+   				    sh "kubectl delete -n default deployment 22050108-svr"
 				    sh  "kubectl delete -n default service apache"
 		                    sh "kubectl create -f deployment.yaml"
 				    echo "Down previous deployment and continue with new deployment . . ."
